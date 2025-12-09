@@ -1,6 +1,6 @@
 univariant_analysis <- function(data, 
                                 variable = NULL,
-                                id_check = FALSE,
+                                keep_ids = FALSE,
                                 plot_type = "ggplot", 
                                 plot_num = "hist",     
                                 plot_cat = "bar",      
@@ -37,9 +37,9 @@ univariant_analysis <- function(data,
     is_categorical <- !is_numeric || (is_numeric && n_unique <= num_cat_threshold)
     
     # ID check, false by default; TRUE when trying to check equal number of samples and unique values
-    if (!id_check) {
+    if (!keep_ids) {
       if (grepl("id$", var_lower) || grepl("^id", var_lower) || grepl("_id_", var_lower) || grepl("\\.id", var_lower)) {
-        cat("   Type: Identifier (ID) - Skipping analysis as per id_check = FALSE\n\n")
+        cat("   Type: Identifier (ID) - Skipping analysis as per keep_ids = FALSE\n\n")
         next # Skip to the next iteration of the loop
       }
     }
